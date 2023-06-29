@@ -17,6 +17,7 @@ In addition, this project will include:
 
 
 ## Wireframes
+<img width="600" alt="Screen Shot 2023-06-28 at 20 18 46" src="https://github.com/artemplv/currency-converter/assets/48654322/233c4ac0-abae-421c-9475-ab80044a4fd0">
 
 
 ## Technologies, Libraries, APIs
