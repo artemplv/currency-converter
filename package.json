@@ -1,14 +1,22 @@
 {
   "name": "currency-converter",
   "version": "1.0.0",
-  "description": "## Background This currency converter project is a tool that enables users to convert currencies and visualize exchange rates. It allows users to select their desired currencies either from a dropdown menu or using an interactive world map. They can then input the amount to be converted, and instantly view the converted value. Additionally, users can explore historical exchange rate trends through an interactive rates graph, providing valuable insights into currency fluctuations over time.",
+  "description": "This currency converter project is a tool that enables users to convert currencies and visualize exchange rates. It allows users to select their desired currencies either from a dropdown menu or using an interactive world map. They can then input the amount to be converted, and instantly view the converted value. Additionally, users can explore historical exchange rate trends through an interactive rates graph, providing valuable insights into currency fluctuations over time.",
   "main": "index.js",
   "browserslist": [
     "defaults"
   ],
   "scripts": {
     "watch": "webpack --watch --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "prepare": "husky install",
+    "lint": "eslint src/"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
   },
   "repository": {
     "type": "git",
@@ -25,13 +33,16 @@
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "babel-loader": "^9.1.2",
-    "core-js": "^3.31.0",
     "css-loader": "^6.8.1",
+    "eslint": "^8.43.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
     "mini-css-extract-plugin": "^2.7.6",
     "regenerator-runtime": "^0.13.11",
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2",
     "webpack": "^5.88.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "husky": "^8.0.0"
   }
 }
