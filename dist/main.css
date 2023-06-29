@@ -9,3 +9,7 @@
 #main {
   color: purple;
 }
+
+#map canvas {
+  background-color: rgb(216, 241, 255);
+}

@@ -38,5 +38,9 @@
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
     "husky": "^8.0.0"
+  },
+  "dependencies": {
+    "d3-geo": "^3.1.0",
+    "d3-selection": "^3.0.0"
   }
 }
