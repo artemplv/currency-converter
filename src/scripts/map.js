@@ -26,7 +26,7 @@ const MAP_CONSTANTS = {
 };
 
 class WorldMap {
-  constructor(mapCanvas, tooltip) {
+  constructor(mapCanvas, tooltip, onCountriesChange) {
     this.canvas = mapCanvas;
     this.ctx = this.canvas.getContext('2d');
     this.width = this.canvas.offsetWidth;
@@ -41,6 +41,7 @@ class WorldMap {
     this.state = {
       clickedLocation: null,
       hoveredLocation: null,
+      selectedCountries: [],
     };
     //
     this.dragStartedTime = null;
@@ -57,6 +58,8 @@ class WorldMap {
     this.canvas.addEventListener('mouseup', this.handleMouseUp);
     this.canvas.addEventListener('mousemove', this.handleMouseMove);
     this.canvas.addEventListener('wheel', this.handleZoom);
+    //
+    this.onCountriesChange = onCountriesChange;
   }
 
   get clickedLocation() {
@@ -73,6 +76,32 @@ class WorldMap {
 
   set hoveredLocation(location) {
     this.state.hoveredLocation = location;
+  }
+
+  get selectedCountries() {
+    return this.state.selectedCountries;
+  }
+
+  isCountrySelected(country) {
+    return this.state.selectedCountries.includes(country);
+  }
+
+  addToSelectedCountries(country) {
+    if (!this.isCountrySelected(country)) {
+      this.state.selectedCountries.push(country);
+    }
+
+    this.onCountriesChange(this.selectedCountries);
+
+    return this.state.selectedCountries;
+  }
+
+  removeFromSelectedCountries(country) {
+    this.state.selectedCountries = this.state.selectedCountries.filter((value) => value !== country);
+
+    this.onCountriesChange(this.selectedCountries);
+
+    return country;
   }
 
   update() {
@@ -115,14 +144,30 @@ class WorldMap {
 
       ctx.lineWidth = MAP_CONSTANTS.strokeLineWidth;
       ctx.strokeStyle = MAP_CONSTANTS.strokeColor;
+      ctx.fillStyle = MAP_CONSTANTS.defaultFillColor;
 
-      if (clickedLocation && geoContains(d, clickedLocation)) {
-        ctx.fillStyle = MAP_CONSTANTS.selectedFillColor;
-      } else if (hoveredLocation && geoContains(d, hoveredLocation)) {
+      if (hoveredLocation && geoContains(d, hoveredLocation)) {
         ctx.fillStyle = MAP_CONSTANTS.hoveredFillColor;
         handleTooltip.show(tooltip, d.properties.name);
-      } else {
-        ctx.fillStyle = MAP_CONSTANTS.defaultFillColor;
+      }
+
+      if (this.isCountrySelected(d.properties.name)) {
+        ctx.fillStyle = MAP_CONSTANTS.selectedFillColor;
+      }
+
+      if (clickedLocation && geoContains(d, clickedLocation)) {
+        // add or remove country from list of selected countries and choose right color
+        if (this.isCountrySelected(d.properties.name)) {
+          // remove country from selected
+          this.removeFromSelectedCountries(d.properties.name);
+          ctx.fillStyle = MAP_CONSTANTS.defaultFillColor;
+        } else {
+          // add country to selected
+          this.addToSelectedCountries(d.properties.name);
+          ctx.fillStyle = MAP_CONSTANTS.selectedFillColor;
+        }
+
+        this.clickedLocation = null;
       }
 
       geoGenerator(d);

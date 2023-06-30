@@ -10,6 +10,11 @@ body {
   background-color: white;
 }
 
+main {
+  display: flex;
+  gap: 40px;
+}
+
 .map-container {
   position: relative;
 }
