@@ -18,6 +18,7 @@ const MAP_CONSTANTS = {
   geojsonUrl: 'https://gist.githubusercontent.com/artemplv/be8ebf292a4433944f3948b06732a6cc/raw/cd2e417144d0d1b0fd10888b4de01b373ad49d5e/110m_countries.json',
   defaultFillColor: '#fff',
   selectedFillColor: '#ff571b',
+  hoveredFillColor: 'rgb(255, 240, 72)',
   strokeColor: '#cbcbcb',
   strokeLineWidth: 0.45,
 };
@@ -33,7 +34,10 @@ class WorldMap {
     this.rotation = MAP_CONSTANTS.defaultRotation;
     //
     this.geojson = {};
-    this.state = { clickedLocation: null };
+    this.state = {
+      clickedLocation: null,
+      hoveredLocation: null,
+    };
     //
     this.dragStartedTime = null;
     //
@@ -59,6 +63,14 @@ class WorldMap {
     this.state.clickedLocation = location;
   }
 
+  get hoveredLocation() {
+    return this.state.hoveredLocation;
+  }
+
+  set hoveredLocation(location) {
+    this.state.hoveredLocation = location;
+  }
+
   update() {
     const {
       projection,
@@ -70,6 +82,7 @@ class WorldMap {
       rotation,
       geoGenerator,
       clickedLocation,
+      hoveredLocation,
     } = this;
 
     projection.fitSize([width, height], geojson);
@@ -85,9 +98,14 @@ class WorldMap {
 
       ctx.lineWidth = MAP_CONSTANTS.strokeLineWidth;
       ctx.strokeStyle = MAP_CONSTANTS.strokeColor;
-      ctx.fillStyle = clickedLocation && geoContains(d, clickedLocation)
-        ? MAP_CONSTANTS.selectedFillColor
-        : MAP_CONSTANTS.defaultFillColor;
+
+      if (clickedLocation && geoContains(d, clickedLocation)) {
+        ctx.fillStyle = MAP_CONSTANTS.selectedFillColor;
+      } else if (hoveredLocation && geoContains(d, hoveredLocation)) {
+        ctx.fillStyle = MAP_CONSTANTS.hoveredFillColor;
+      } else {
+        ctx.fillStyle = MAP_CONSTANTS.defaultFillColor;
+      }
 
       geoGenerator(d);
 
@@ -115,9 +133,12 @@ class WorldMap {
       const [x, y] = rotation;
 
       this.rotation = [(x + dx) % 360, (y - dy) % 360];
-
-      this.update();
+    } else {
+      const pos = pointer(event, this.canvas);
+      this.hoveredLocation = this.projection.invert(pos);
     }
+
+    this.update();
   }
 
   handleMouseUp(event) {
