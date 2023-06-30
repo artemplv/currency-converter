@@ -1,3 +1,6 @@
-import drawMap from './scripts/map';
+import WorldMap from './scripts/map';
 
-drawMap();
+const canvas = document.querySelector('#map canvas');
+
+const map = new WorldMap(canvas);
+map.initialize();
