@@ -127,7 +127,7 @@ class WorldMap {
     } = this;
 
     if (!dragStartedTime || (Date.now() - dragStartedTime < 150)) {
-      const pos = pointer(event, this);
+      const pos = pointer(event, this.canvas);
       this.clickedLocation = projection.invert(pos);
 
       this.update();
