@@ -4,9 +4,9 @@ import {
   geoContains,
 } from 'd3-geo';
 
-import {
-  pointer,
-} from 'd3-selection';
+import { pointer } from 'd3-selection';
+
+import handleTooltip from './handleTooltip';
 
 const MAP_CONSTANTS = {
   defaultScale: 250,
@@ -21,14 +21,18 @@ const MAP_CONSTANTS = {
   hoveredFillColor: 'rgb(255, 240, 72)',
   strokeColor: '#cbcbcb',
   strokeLineWidth: 0.45,
+  outlineColor: '#ccc',
+  oceanFillColor: 'rgb(14, 90, 197)',
 };
 
 class WorldMap {
-  constructor(canvas) {
-    this.canvas = canvas;
+  constructor(mapCanvas, tooltip) {
+    this.canvas = mapCanvas;
     this.ctx = this.canvas.getContext('2d');
     this.width = this.canvas.offsetWidth;
     this.height = this.canvas.offsetHeight;
+    //
+    this.tooltip = tooltip;
     //
     this.scale = MAP_CONSTANTS.defaultScale;
     this.rotation = MAP_CONSTANTS.defaultRotation;
@@ -83,14 +87,27 @@ class WorldMap {
       geoGenerator,
       clickedLocation,
       hoveredLocation,
+      tooltip,
     } = this;
 
+    // clear canvas
+    ctx.clearRect(0, 0, width, height);
+    handleTooltip.hide(tooltip);
+
+    // prepare projection
     projection.fitSize([width, height], geojson);
     projection.scale(scale);
     projection.rotate(rotation);
 
-    ctx.clearRect(0, 0, width, height);
+    // draw globe outline and fill oceans
+    ctx.beginPath();
+    ctx.strokeStyle = MAP_CONSTANTS.outlineColor;
+    ctx.fillStyle = MAP_CONSTANTS.oceanFillColor;
+    geoGenerator({ type: 'Sphere' });
+    ctx.stroke();
+    ctx.fill();
 
+    // iterate over countries and draw them
     for (let i = 0; i < geojson.features.length; i += 1) {
       const d = geojson.features[i];
 
@@ -103,6 +120,7 @@ class WorldMap {
         ctx.fillStyle = MAP_CONSTANTS.selectedFillColor;
       } else if (hoveredLocation && geoContains(d, hoveredLocation)) {
         ctx.fillStyle = MAP_CONSTANTS.hoveredFillColor;
+        handleTooltip.show(tooltip, d.properties.name);
       } else {
         ctx.fillStyle = MAP_CONSTANTS.defaultFillColor;
       }

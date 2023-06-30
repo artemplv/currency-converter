@@ -1,9 +1,36 @@
 @import './styles/example.scss';
 
-#main {
-  color: $color;
+body {
+  background-color: white;
 }
 
-#map canvas {
-  background-color: rgb(14, 90, 197);
+.map-container {
+  position: relative;
+}
+
+#map {
+  // background-color: rgb(14, 90, 197);
+  background-color: wheat;
+  cursor: pointer;
+}
+
+// #map-tooltip {
+//   position: absolute;
+//   left: -200px;
+//   top: 20px;
+//   background-color: black;
+//   border-radius: 5px;
+// }
+#map-tooltip {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  min-width: 150px;
+  background-color: black;
+  color: white;
+  text-align: center;
+
+  border-radius: 5px;
+  padding: 5px 15px;
+  visibility: hidden;
 }
