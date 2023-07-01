@@ -15,7 +15,7 @@ const MAP_CONSTANTS = {
   defaultRotation: [0, 0],
   rotationModifier: 0.3,
   // eslint-disable-next-line max-len
-  geojsonUrl: 'https://gist.githubusercontent.com/artemplv/be8ebf292a4433944f3948b06732a6cc/raw/cd2e417144d0d1b0fd10888b4de01b373ad49d5e/110m_countries.json',
+  geojsonUrl: 'https://gist.githubusercontent.com/artemplv/be8ebf292a4433944f3948b06732a6cc/raw/95e446a098596eb51cc9734e8b9e12ec8e1781d9/110m_countries.json',
   defaultFillColor: '#fff',
   selectedFillColor: '#ff571b',
   hoveredFillColor: 'rgb(255, 240, 72)',
@@ -83,7 +83,7 @@ class WorldMap {
   }
 
   isCountrySelected(country) {
-    return this.state.selectedCountries.includes(country);
+    return this.state.selectedCountries.findIndex((item) => item.name === country.name) > -1;
   }
 
   addToSelectedCountries(country) {
@@ -97,7 +97,7 @@ class WorldMap {
   }
 
   removeFromSelectedCountries(country) {
-    this.state.selectedCountries = this.state.selectedCountries.filter((value) => value !== country);
+    this.state.selectedCountries = this.state.selectedCountries.filter((item) => item.name !== country.name);
 
     this.onCountriesChange(this.selectedCountries);
 
@@ -119,7 +119,7 @@ class WorldMap {
       tooltip,
     } = this;
 
-    // clear canvas
+    // clear canvas and tooltip
     ctx.clearRect(0, 0, width, height);
     handleTooltip.hide(tooltip);
 
@@ -151,19 +151,19 @@ class WorldMap {
         handleTooltip.show(tooltip, d.properties.name);
       }
 
-      if (this.isCountrySelected(d.properties.name)) {
+      if (this.isCountrySelected(d.properties)) {
         ctx.fillStyle = MAP_CONSTANTS.selectedFillColor;
       }
 
       if (clickedLocation && geoContains(d, clickedLocation)) {
-        // add or remove country from list of selected countries and choose right color
-        if (this.isCountrySelected(d.properties.name)) {
+        // add or remove country from list of selected countries and choose the right color
+        if (this.isCountrySelected(d.properties)) {
           // remove country from selected
-          this.removeFromSelectedCountries(d.properties.name);
+          this.removeFromSelectedCountries(d.properties);
           ctx.fillStyle = MAP_CONSTANTS.defaultFillColor;
         } else {
           // add country to selected
-          this.addToSelectedCountries(d.properties.name);
+          this.addToSelectedCountries(d.properties);
           ctx.fillStyle = MAP_CONSTANTS.selectedFillColor;
         }
 

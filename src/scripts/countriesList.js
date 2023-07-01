@@ -6,7 +6,7 @@ export const displayCountries = (countries) => {
 
   for (let i = 0; i < countries.length; i += 1) {
     const li = document.createElement('li');
-    li.innerText = countries[i];
+    li.innerText = `${countries[i].name}, ${countries[i].currencyCode || ''}`;
     ul.appendChild(li);
   }
 
