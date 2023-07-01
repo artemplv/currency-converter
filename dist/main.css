@@ -1,3 +1,3 @@
-#main>h1{border:4px solid purple;padding:20px}#main{color:purple}#map canvas{background-color:#d8f1ff}
+#main>h1{border:4px solid purple;padding:20px}body{background-color:#fff}main{display:flex;gap:40px}.map-container{position:relative}#map{background-color:wheat;cursor:pointer}#map-tooltip{position:absolute;left:20px;top:20px;min-width:150px;background-color:#000;color:#fff;text-align:center;border-radius:5px;padding:5px 15px;visibility:hidden}
 
 /*# sourceMappingURL=main.css.map*/
