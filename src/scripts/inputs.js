@@ -9,7 +9,7 @@ const createInput = (country, index) => {
   const countryFlag = document.createElement('span');
 
   currencyInput.value = 0.0;
-  currencyInput.type = 'text';
+  currencyInput.type = 'number';
   currencyInput.id = `currency-input-${country.currencyCode}-${index}`;
   currencyInput.className = 'currency-input';
   currencyInput.dataset.currencyCode = country.currencyCode;
