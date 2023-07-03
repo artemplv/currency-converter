@@ -122,7 +122,7 @@ class WorldMap {
 
       if (hoveredLocation && geoContains(d, hoveredLocation)) {
         ctx.fillStyle = MAP_CONSTANTS.hoveredFillColor;
-        handleTooltip.show(tooltip, d.properties.name);
+        handleTooltip.show(tooltip, d.properties);
       }
 
       if (state.selectedCountries.isSelected(d.properties.countryCode)) {

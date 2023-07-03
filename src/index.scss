@@ -1,3 +1,4 @@
+@import './styles/reset.css';
 @import './styles/example.scss';
 
 body {
@@ -38,6 +39,10 @@ main {
   border-radius: 5px;
   padding: 5px 15px;
   visibility: hidden;
+
+  .fi {
+    margin-right: 5px;
+  }
 }
 
 #inputs-container {
@@ -69,4 +74,8 @@ main {
       margin-left: 5px;
     }
   }
+}
+
+.hidden {
+  display: none;
 }

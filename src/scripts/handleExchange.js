@@ -8,7 +8,7 @@ const handleExchange = async (event) => {
 
   const targetCurrencyElements = sourceCurrencyInput.parentNode.siblings();
 
-  if (targetCurrencyElements.length < 1) {
+  if (targetCurrencyElements.length < 1 || Number(amount) <= 0 || !amount) {
     return;
   }
 
