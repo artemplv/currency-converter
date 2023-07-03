@@ -1,6 +1,3 @@
-/*!****************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/reset.css ***!
-  \****************************************************************************************************/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -49,73 +46,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/*!*************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
-  \*************************************************************************************************************************************/
-#main > h1 {
-  border: 4px solid purple;
-  padding: 20px;
-}
+#main>h1{border:4px solid purple;padding:20px}body{background-color:#fff}main{display:flex;gap:40px}.map-container{position:relative}#map{background-color:wheat;cursor:pointer}#map-tooltip{position:absolute;left:20px;top:20px;min-width:150px;background-color:#000;color:#fff;text-align:center;border-radius:5px;padding:5px 15px;visibility:hidden}#map-tooltip .fi{margin-right:5px}#inputs-container form{display:flex;flex-direction:column;gap:15px}#inputs-container .currency-input-wrapper:after{content:" " attr(data-currency-name) " " attr(data-currency-symbol) " ";display:block;text-align:right;font-size:10px;color:gray;margin-top:2px}#inputs-container .currency-input{text-align:right;width:100px}#inputs-container label{display:inline-block;width:70px}#inputs-container label .fi{margin-left:5px}.hidden{display:none}
 
-body {
-  background-color: white;
-}
-
-main {
-  display: flex;
-  gap: 40px;
-}
-
-.map-container {
-  position: relative;
-}
-
-#map {
-  background-color: wheat;
-  cursor: pointer;
-}
-
-#map-tooltip {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  min-width: 150px;
-  background-color: black;
-  color: white;
-  text-align: center;
-  border-radius: 5px;
-  padding: 5px 15px;
-  visibility: hidden;
-}
-#map-tooltip .fi {
-  margin-right: 5px;
-}
-
-#inputs-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-#inputs-container .currency-input-wrapper:after {
-  content: " " attr(data-currency-name) " " attr(data-currency-symbol) " ";
-  display: block;
-  text-align: right;
-  font-size: 10px;
-  color: grey;
-  margin-top: 2px;
-}
-#inputs-container .currency-input {
-  text-align: right;
-  width: 100px;
-}
-#inputs-container label {
-  display: inline-block;
-  width: 70px;
-}
-#inputs-container label .fi {
-  margin-left: 5px;
-}
-
-.hidden {
-  display: none;
-}
+/*# sourceMappingURL=main.css.map*/
