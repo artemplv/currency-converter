@@ -64,3 +64,7 @@ main {
 #inputs-container label .fi {
   margin-left: 5px;
 }
+
+.hidden {
+  display: none;
+}

@@ -39,6 +39,14 @@ const createInput = (country, index) => {
 
 // eslint-disable-next-line import/prefer-default-export
 export const displayInputs = (countries) => {
+  const placeholderMessageContainer = document.querySelector('.placeholder-container');
+
+  if (countries.length > 0) {
+    placeholderMessageContainer.classList.add('hidden');
+  } else {
+    placeholderMessageContainer.classList.remove('hidden');
+  }
+
   const form = document.createElement('form');
 
   form.addEventListener('input', handleExchange);
