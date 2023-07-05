@@ -9,12 +9,24 @@ class SelectedCountries {
   }
 
   get list() {
-    return Object.values(this.countries);
+    const seenCurrencies = [];
+    return Object.values(this.countries).filter((item) => {
+      const { currencyCode } = item;
+      if (!seenCurrencies.includes(currencyCode)) {
+        seenCurrencies.push(currencyCode);
+        return true;
+      }
+      return false;
+    });
   }
 
   get countryCodes() {
     return Object.keys(this.countries);
   }
+
+  // get currencies() {
+  //   return Object.values(this.countries).map((value) => value.currencyCode);
+  // }
 
   isSelected(countryCode) {
     return !!this.countries[countryCode];
