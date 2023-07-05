@@ -1,7 +1,9 @@
 import feather from 'feather-icons';
-import './scripts/monkeyPatching';
 import WorldMap from './scripts/map';
 import { displayInputs } from './scripts/inputs';
+
+import './scripts/monkeyPatching';
+import './scripts/handleModals';
 
 const mapCanvas = document.querySelector('#map');
 const tooltipCanvas = document.querySelector('#map-tooltip');

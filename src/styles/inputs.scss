@@ -21,7 +21,7 @@
   .currency-input {
     text-align: right;
     width: 120px;
-    border-radius: 5px;
+    border-radius: $border-radius;
     height: 25px;
     font-size: 18px;
     color: $accent-dark;

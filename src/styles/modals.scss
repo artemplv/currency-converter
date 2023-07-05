@@ -1,0 +1,54 @@
+@import './variables.scss';
+
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.modal-body {
+  padding: 40px 35px 25px;
+  background-color: $background-secondary;
+  border-radius: $border-radius;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 50px;
+  }
+
+  li {
+    p {
+      display: inline-block;
+    }
+
+    svg {
+      margin-bottom: -6px;
+      margin-right: 20px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  }
+
+  .code {
+    background-color: $accent-dark;
+    padding: 2px 6px;
+    border-radius: $border-radius;
+  }
+
+  .button {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+body.modal-open {
+  overflow-y: hidden;
+}

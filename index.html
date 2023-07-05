@@ -25,11 +25,17 @@
         </a>
       </div>
 
-      <h1>Currency Converter</h1>
+      <h1>Currency Converter <i data-feather="globe"></i></h1>
+
+      <div>
+        <button id="instructions-open" class="button modal-control-button">
+          Instructions
+        </button>
+      </div>
     </header>
     <main>
       <div class="map-container">
-        <canvas id="map" width="900" height="600"></canvas>
+        <canvas id="map" width="900" height="580"></canvas>
         <div id="map-tooltip"></div>
       </div>
   
@@ -46,6 +52,33 @@
         </div>
       </div>  
     </main>
+
+    <div class="modal-container instructions-modal hidden">
+      <div class="modal-body">
+        <ul>
+          <li>
+            <i data-feather="crosshair"></i>
+            <p>Select currencies (up to five) by clicking on countries using the globe</p>
+          </li>
+          <li>
+            <i data-feather="move"></i>
+            <p>Click and drag the globe to rotate it</p>
+          </li>
+          <li>
+            <i data-feather="maximize-2"></i>
+            <p>Use pinch gesture or <span class="code">Ctrl + Scroll</span> to zoom the globe</p>
+          </li>
+          <li>
+            <i data-feather="edit-3"></i>
+            <p>Use inputs on the right to enter amount for conversion</p>
+          </li>
+        </ul>
+        
+        <button id="instructions-close" class="button">
+          Close
+        </button>  
+      </div>
+    </div>
   </body>
 
 </html>

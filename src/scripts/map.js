@@ -93,9 +93,10 @@ class WorldMap {
       state,
     } = this;
 
-    // clear canvas and tooltip
+    // clear canvas, tooltip, and reset cursor
     ctx.clearRect(0, 0, width, height);
     handleTooltip.hide(tooltip);
+    this.canvas.style.cursor = 'move';
 
     // prepare projection
     projection.fitSize([width, height], geojson);
@@ -123,6 +124,7 @@ class WorldMap {
       if (hoveredLocation && geoContains(d, hoveredLocation)) {
         ctx.fillStyle = MAP_CONSTANTS.hoveredFillColor;
         handleTooltip.show(tooltip, d.properties);
+        this.canvas.style.cursor = 'pointer';
       }
 
       if (state.selectedCountries.isSelected(d.properties.countryCode)) {
