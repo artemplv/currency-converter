@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .map-container {
   position: relative;
 }
@@ -11,15 +13,24 @@
   left: 20px;
   top: 20px;
   min-width: 150px;
-  background-color: black;
-  color: white;
+  background-color: $background-secondary;
+  color: $base;
   text-align: center;
 
   border-radius: 5px;
-  padding: 5px 15px;
+  padding: 15px 20px;
   visibility: hidden;
 
   .fi {
-    margin-right: 5px;
+    margin-right: 7px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  p:last-child {
+    font-style: italic;
+    margin-bottom: 0;
   }
 }

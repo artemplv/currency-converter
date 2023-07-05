@@ -1,3 +1,4 @@
+import feather from 'feather-icons';
 import './scripts/monkeyPatching';
 import WorldMap from './scripts/map';
 import { displayInputs } from './scripts/inputs';
@@ -7,3 +8,5 @@ const tooltipCanvas = document.querySelector('#map-tooltip');
 
 const map = new WorldMap(mapCanvas, tooltipCanvas, displayInputs);
 map.initialize();
+
+feather.replace();

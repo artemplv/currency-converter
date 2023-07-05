@@ -21,9 +21,21 @@ header {
 
   .links {
     position: absolute;
+    display: flex;
+    gap: 30px;
+    font-size: 20px;
     
     a {
-      color: white;
+      color: $base;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    svg {
+      margin-bottom: -2px;
     }
   }
 }
