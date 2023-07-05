@@ -1,6 +1,13 @@
 import handleExchange from './handleExchange';
+import WorldMap from './map';
 
 const inputsContainer = document.querySelector('#inputs-container');
+const resetButton = document.querySelector('#reset-selection');
+
+resetButton.addEventListener('click', () => {
+  WorldMap.spin(window.myGlobeMap);
+  window.myGlobeMap.state.selectedCountries.clear();
+});
 
 const createInput = (country, index) => {
   const wrapper = document.createElement('div');
@@ -43,8 +50,10 @@ export const displayInputs = (countries) => {
 
   if (countries.length > 0) {
     placeholderMessageContainer.classList.add('hidden');
+    resetButton.classList.remove('hidden');
   } else {
     placeholderMessageContainer.classList.remove('hidden');
+    resetButton.classList.add('hidden');
   }
 
   const form = document.createElement('form');

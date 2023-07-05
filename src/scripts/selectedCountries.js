@@ -51,6 +51,13 @@ class SelectedCountries {
   isFull() {
     return this.length >= this.max;
   }
+
+  clear() {
+    this.countries = {};
+    this.length = 0;
+
+    this.onChange(this.list);
+  }
 }
 
 export default SelectedCountries;

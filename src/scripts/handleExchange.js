@@ -1,5 +1,6 @@
 import { exchangeAll } from './exchangeRequests';
 import { debounce } from './utils';
+import WorldMap from './map';
 
 const handleExchange = async (event) => {
   const sourceCurrencyInput = event.target;
@@ -26,6 +27,8 @@ const handleExchange = async (event) => {
     // access <input/> element
     element.lastChild.value = exchangeResults[idx]; // eslint-disable-line no-param-reassign
   });
+
+  WorldMap.spin(window.myGlobeMap);
 };
 
 export default debounce(handleExchange, 600);

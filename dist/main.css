@@ -227,6 +227,9 @@ main {
 .contents-container {
   min-width: 350px;
 }
+.contents-container .reset-selection-button {
+  margin-top: 35px;
+}
 
 .button {
   color: #e0e1dd;

@@ -15,6 +15,7 @@ const MAP_CONSTANTS = {
   minScale: 130,
   defaultRotation: [0, 0],
   rotationModifier: 0.3,
+  defaultRotationSpeed: 0.17,
   // eslint-disable-next-line max-len
   geojsonUrl: 'https://gist.githubusercontent.com/artemplv/be8ebf292a4433944f3948b06732a6cc/raw/95e446a098596eb51cc9734e8b9e12ec8e1781d9/110m_countries.json',
   defaultFillColor: '#e0e1dd',
@@ -47,10 +48,19 @@ class WorldMap {
     //
     this.dragStartedTime = null;
     //
+    this.animation = {
+      paused: false,
+      pausedTime: null,
+      rotationSpeed: 0.17,
+      spinTimeoutId: null,
+    };
+    //
+    this.update = this.update.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleZoom = this.handleZoom.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
     //
     this.projection = geoOrthographic();
     this.geoGenerator = geoPath().projection(this.projection).context(this.ctx);
@@ -59,6 +69,7 @@ class WorldMap {
     this.canvas.addEventListener('mouseup', this.handleMouseUp);
     this.canvas.addEventListener('mousemove', this.handleMouseMove);
     this.canvas.addEventListener('wheel', this.handleZoom);
+    this.canvas.addEventListener('mouseleave', this.handleMouseLeave);
   }
 
   get clickedLocation() {
@@ -92,6 +103,15 @@ class WorldMap {
       tooltip,
       state,
     } = this;
+
+    if (!this.animation.paused) {
+      const [x, y] = rotation;
+
+      this.rotation = [x + this.animation.rotationSpeed, y];
+    } else if (Date.now() - this.animation.pausedTime > 1500) {
+      this.animation.pausedTime = null;
+      this.animation.paused = false;
+    }
 
     // clear canvas, tooltip, and reset cursor
     ctx.clearRect(0, 0, width, height);
@@ -151,6 +171,8 @@ class WorldMap {
       ctx.stroke();
       ctx.fill();
     }
+
+    window.requestAnimationFrame(this.update);
   }
 
   handleMouseDown() {
@@ -165,6 +187,9 @@ class WorldMap {
     } = this;
 
     if (dragStartedTime) {
+      this.animation.paused = true;
+      this.animation.pausedTime = Date.now();
+
       const modifier = scale > 800 ? 0.1 : MAP_CONSTANTS.rotationModifier;
 
       const dx = event.movementX * modifier;
@@ -176,8 +201,6 @@ class WorldMap {
       const pos = pointer(event, this.canvas);
       this.hoveredLocation = this.projection.invert(pos);
     }
-
-    this.update();
   }
 
   handleMouseUp(event) {
@@ -189,8 +212,6 @@ class WorldMap {
     if (!dragStartedTime || (Date.now() - dragStartedTime < 150)) {
       const pos = pointer(event, this.canvas);
       this.clickedLocation = projection.invert(pos);
-
-      this.update();
     }
 
     this.dragStartedTime = null;
@@ -208,9 +229,11 @@ class WorldMap {
       if (this.scale < MAP_CONSTANTS.minScale) {
         this.scale = MAP_CONSTANTS.minScale;
       }
-
-      this.update();
     }
+  }
+
+  handleMouseLeave() {
+    this.hoveredLocation = null;
   }
 
   async initialize() {
@@ -218,6 +241,19 @@ class WorldMap {
     this.geojson = await response.json();
 
     this.update();
+  }
+
+  static spin(item) {
+    if (item.animation.spinTimeoutId) {
+      clearTimeout(item.animation.spinTimeoutId);
+    }
+    /* eslint-disable no-param-reassign */
+    item.animation.rotationSpeed = 9;
+
+    item.animation.spinTimeoutId = setTimeout(() => {
+      item.animation.rotationSpeed = MAP_CONSTANTS.defaultRotationSpeed;
+    }, 1075);
+    /* eslint-enable no-param-reassign */
   }
 }
 

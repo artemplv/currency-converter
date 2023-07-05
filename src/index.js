@@ -10,5 +10,6 @@ const tooltipCanvas = document.querySelector('#map-tooltip');
 
 const map = new WorldMap(mapCanvas, tooltipCanvas, displayInputs);
 map.initialize();
+window.myGlobeMap = map;
 
 feather.replace();
