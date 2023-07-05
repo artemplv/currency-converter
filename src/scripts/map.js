@@ -17,13 +17,13 @@ const MAP_CONSTANTS = {
   rotationModifier: 0.3,
   // eslint-disable-next-line max-len
   geojsonUrl: 'https://gist.githubusercontent.com/artemplv/be8ebf292a4433944f3948b06732a6cc/raw/95e446a098596eb51cc9734e8b9e12ec8e1781d9/110m_countries.json',
-  defaultFillColor: '#fff',
-  selectedFillColor: '#ff571b',
-  hoveredFillColor: 'rgb(255, 240, 72)',
-  strokeColor: '#cbcbcb',
+  defaultFillColor: '#e0e1dd',
+  selectedFillColor: '#9e2a2b',
+  hoveredFillColor: '#778da9',
+  strokeColor: '#0d1b2a',
   strokeLineWidth: 0.45,
   outlineColor: '#ccc',
-  oceanFillColor: 'rgb(14, 90, 197)',
+  oceanFillColor: '#415a77',
 };
 
 class WorldMap {

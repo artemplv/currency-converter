@@ -1,0 +1,25 @@
+.map-container {
+  position: relative;
+}
+
+#map {
+  cursor: pointer;
+}
+
+#map-tooltip {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  min-width: 150px;
+  background-color: black;
+  color: white;
+  text-align: center;
+
+  border-radius: 5px;
+  padding: 5px 15px;
+  visibility: hidden;
+
+  .fi {
+    margin-right: 5px;
+  }
+}

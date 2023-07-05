@@ -1,3 +1,10 @@
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&display=swap);
+/*!****************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/reset.css ***!
+  \****************************************************************************************************/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -46,6 +53,116 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-#main>h1{border:4px solid purple;padding:20px}body{background-color:#fff}main{display:flex;gap:40px}.map-container{position:relative}#map{background-color:wheat;cursor:pointer}#map-tooltip{position:absolute;left:20px;top:20px;min-width:150px;background-color:#000;color:#fff;text-align:center;border-radius:5px;padding:5px 15px;visibility:hidden}#map-tooltip .fi{margin-right:5px}#inputs-container form{display:flex;flex-direction:column;gap:15px}#inputs-container .currency-input-wrapper:after{content:" " attr(data-currency-name) " " attr(data-currency-symbol) " ";display:block;text-align:right;font-size:10px;color:gray;margin-top:2px}#inputs-container .currency-input{text-align:right;width:100px}#inputs-container label{display:inline-block;width:70px}#inputs-container label .fi{margin-left:5px}.hidden{display:none}
+/*!*****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss (1) ***!
+  \*****************************************************************************************************************************************/
+.map-container {
+  position: relative;
+}
 
-/*# sourceMappingURL=main.css.map*/
+#map {
+  cursor: pointer;
+}
+
+#map-tooltip {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  min-width: 150px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 15px;
+  visibility: hidden;
+}
+#map-tooltip .fi {
+  margin-right: 5px;
+}
+
+#inputs-container {
+  width: fit-content;
+}
+#inputs-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+#inputs-container .currency-input-wrapper:after {
+  content: " " attr(data-currency-name) " " attr(data-currency-symbol) " ";
+  display: block;
+  text-align: right;
+  font-size: 13px;
+  color: #e0e1dd;
+  margin-top: 4px;
+}
+#inputs-container .currency-input {
+  text-align: right;
+  width: 120px;
+  border-radius: 5px;
+  height: 25px;
+  font-size: 18px;
+  color: #415a77;
+}
+#inputs-container label {
+  display: inline-block;
+  width: 80px;
+  font-size: 19px;
+}
+#inputs-container label .fi {
+  margin-left: 7px;
+}
+
+body {
+  font-family: "Roboto", "Arial", sans-serif;
+  color: #fff;
+  background-color: #1b263b;
+}
+
+header {
+  position: relative;
+  padding: 15px 15px;
+}
+header h1 {
+  font-size: 32px;
+  text-align: center;
+}
+header .links {
+  position: absolute;
+}
+header .links a {
+  color: white;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.placeholder-container {
+  font-size: 24px;
+  text-align: center;
+  position: relative;
+}
+.placeholder-container p {
+  width: max-content;
+}
+.placeholder-container p:first-child {
+  position: absolute;
+  top: 0;
+  left: -150px;
+}
+
+.contents-container {
+  min-width: 350px;
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}

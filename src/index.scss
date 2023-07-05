@@ -1,81 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&display=swap');
 @import './styles/reset.css';
-@import './styles/example.scss';
+@import './styles/map.scss';
+@import './styles/inputs.scss';
+@import './styles/variables.scss';
 
 body {
-  background-color: white;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  color: #fff;
+  background-color: $background-main;
 }
 
-main {
-  display: flex;
-  gap: 40px;
-}
-
-.map-container {
+header {
   position: relative;
-}
-
-#map {
-  // background-color: rgb(14, 90, 197);
-  background-color: wheat;
-  cursor: pointer;
-}
-
-// #map-tooltip {
-//   position: absolute;
-//   left: -200px;
-//   top: 20px;
-//   background-color: black;
-//   border-radius: 5px;
-// }
-#map-tooltip {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  min-width: 150px;
-  background-color: black;
-  color: white;
-  text-align: center;
-
-  border-radius: 5px;
-  padding: 5px 15px;
-  visibility: hidden;
-
-  .fi {
-    margin-right: 5px;
-  }
-}
-
-#inputs-container {
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  padding: 15px 15px;
+  
+  h1 {
+    font-size: 32px;
+    text-align: center;
   }
 
-  .currency-input-wrapper:after {
-    content: ' 'attr(data-currency-name)' 'attr(data-currency-symbol)' ';
-    display: block;
-    text-align: right;
-    font-size: 10px;
-    color: grey;
-    margin-top: 2px;
-  }
-
-  .currency-input {
-    text-align: right;
-    width: 100px;
-  }
-
-  label {
-    display: inline-block;
-    width: 70px;
-
-    .fi {
-      margin-left: 5px;
+  .links {
+    position: absolute;
+    
+    a {
+      color: white;
     }
   }
 }
 
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.placeholder-container {
+  font-size: 24px;
+  text-align: center;
+  position: relative;
+
+  p {
+    width: max-content;
+  }
+
+   p:first-child {
+    position: absolute;
+    top: 0;
+    left: -150px;
+  }
+}
+
+.contents-container {
+  min-width: 350px;
+}
+
 .hidden {
   display: none;
+}
+
+.invisible {
+  visibility: hidden;
 }
