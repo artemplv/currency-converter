@@ -2,6 +2,8 @@
 
 This currency converter project is a tool designed to provide users with a seamless and visually engaging currency conversion experience. By leveraging an interactive globe visualization, users can explore and select currencies from different countries around the world.
 
+The project is hosted here: [artemplv.github.io/currency-converter](https://artemplv.github.io/currency-converter)
+
 
 <img width="600" alt="Project screen recording" src="https://github.com/artemplv/currency-converter/assets/48654322/a0a55073-e5d7-4248-863f-ccceacf616fe">
 
