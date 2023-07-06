@@ -24,7 +24,7 @@ This project is implemented with the following technologies:
 - ```npm``` to manage project dependencies.
 
 
-A globe is drawed onto a page using ```Canvas``` and ```d3``` library. The data, which includes countries' coordinates and their currencies, is stored in a special GeoJSON formatted file which is used for creating a projection. After applying some modifiers the projection is used for producing canvas image. Each frame is rendered using ```requestAnimationFrame```.
+A globe is drawn on a page using ```Canvas``` and ```d3``` library. The data, which includes countries' coordinates and their currencies, is stored in a special GeoJSON formatted file which is used for creating a projection. After applying some modifiers the projection is used for producing canvas image. Each frame is rendered using ```requestAnimationFrame```.
 ```JavaScript
     // clear canvas, tooltip, and reset cursor
     ctx.clearRect(0, 0, width, height);
