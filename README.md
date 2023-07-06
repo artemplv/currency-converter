@@ -5,7 +5,7 @@ This currency converter project is a tool designed to provide users with a seaml
 
 <img width="600" alt="Project screen recording" src="https://github.com/artemplv/currency-converter/assets/48654322/a0a55073-e5d7-4248-863f-ccceacf616fe">
 
-## Functionality & MVPs
+## Functionality
 
 Key features:
 
